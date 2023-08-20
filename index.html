@@ -5,34 +5,10 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Unity WebGL Player | Ruoka-aika</title>
-  <style>
-    /* CSS code for canvas rotation and body styling */
-    #unity-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      /* Set canvas container height to 100% of viewport height */
-    }
-
-    .rotate-canvas {
-      width: 100%;
-      /* Make canvas width 100% of container width */
-      height: 100%;
-      /* Make canvas height 100% of container height */
-      transform: rotate(90deg);
-      /* Rotate 90 degrees clockwise */
-      transform-origin: center center;
-      /* Rotate from the center */
-      background: #231F20;
-    }
-  </style>
 </head>
 
-<body style="margin: 0; overflow: hidden;">
-  <div id="unity-container">
-    <canvas id="unity-canvas" class="rotate-canvas"></canvas>
-  </div>
+<body style="text-align: center; padding: 0; border: 0; margin: 0;">
+  <canvas id="unity-canvas" width=960 height=600 style="width: 960px; height: 600px; background: #231F20"></canvas>
   <script src="Build/Ruoka-aikaBuild.loader.js"></script>
   <script>
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -42,26 +18,12 @@
       meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
       document.getElementsByTagName('head')[0].appendChild(meta);
 
-      var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.style.position = "fixed";
 
-      // Adjust canvas size based on the orientation
-      function adjustCanvasSize() {
-        if (window.innerWidth > window.innerHeight) {
-          canvas.style.transform = "rotate(90deg)"; // Landscape orientation
-        } else {
-          canvas.style.transform = "rotate(0deg)"; // Portrait orientation
-        }
-      }
-
-      adjustCanvasSize(); // Initial adjustment
-      window.addEventListener("resize", adjustCanvasSize); // Adjust on window resize
-
-      container.style.display = "flex";
-      container.style.justifyContent = "center";
-      container.style.alignItems = "center";
-      container.style.height = "100vh"; // Set container height to 100% of viewport height
-      container.style.overflow = "hidden";
+      document.body.style.textAlign = "left";
     }
 
     createUnityInstance(document.querySelector("#unity-canvas"), {
@@ -72,6 +34,8 @@
       companyName: "DefaultCompany",
       productName: "Ruoka-aika",
       productVersion: "1.0",
+      // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+      // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
     });
   </script>
 
