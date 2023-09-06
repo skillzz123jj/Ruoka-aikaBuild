@@ -83,18 +83,20 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         container.className = "unity-mobile";
-        canvas.className = "unity-mobile";
+          canvas.className = "unity-mobile";
+          canvas.style.transform = "rotate(90deg)";
+          canvas.style.transformOrigin = "left top";
 
         // To lower canvas resolution on mobile devices to gain some
         // performance, uncomment the following line:
         // config.devicePixelRatio = 1;
 
           // Force landscape orientation on mobile devices
-          if (window.innerHeight > window.innerWidth) {
-              // Rotate the canvas to landscape orientation
-              canvas.style.transform = "rotate(90deg)";
-              canvas.style.transformOrigin = "left top";
-          }
+          //if (window.innerHeight > window.innerWidth) {
+          //    // Rotate the canvas to landscape orientation
+          //    canvas.style.transform = "rotate(90deg)";
+          //    canvas.style.transformOrigin = "left top";
+          //}
 
         unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
