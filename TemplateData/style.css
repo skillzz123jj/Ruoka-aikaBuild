@@ -22,7 +22,6 @@ body {
 @media (orientation: portrait) {
     #unity-container.unity-mobile {
         height: auto;
-        background-color: #231F20;
 
     }
 }
